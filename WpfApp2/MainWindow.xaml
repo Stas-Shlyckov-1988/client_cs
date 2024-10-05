@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="Exele" Height="450" Width="800">
-	<Grid x:Name="data1">
+        Title="Exele" Height="450" Width="479" ResizeMode="NoResize">
+	<Grid x:Name="data1" Margin="0,0,170,0">
         <ListView x:Name="listData1" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>
                 <GridView>
