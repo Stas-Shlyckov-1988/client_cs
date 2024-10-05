@@ -37,8 +37,20 @@ namespace WpfApp2
             MatchCollection matches = regex.Matches(s);
             if (matches.Count > 0)
             {
+                int i = 0;
+                string row = "";
                 foreach (Match match in matches)
-                    listData1.Items.Add(match.Value);
+                {
+                    if (++i < 4) row += match.Value + " ";
+                    else
+                    {
+                        i = 0;
+                        listData1.Items.Add(row);
+                        row = "";
+                    }
+                    
+                }
+                    
             }
             else
             {
