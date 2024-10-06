@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Policy;
+using System.Diagnostics;
 
 
 namespace WpfApp2
@@ -58,6 +59,66 @@ namespace WpfApp2
                  MessageBox.Show("Совпадений не найдено");
             }
 
+        }
+
+        private void StaffSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show("Selected: " + e.AddedItems[0].ToString());
+            Regex item = new Regex(@"^\d+");
+            MatchCollection itemIds = item.Matches(e.AddedItems[0].ToString());
+            if (itemIds.Count > 0)
+            {
+                foreach (Match itemId in itemIds)
+                {
+                    // match.Value
+                    Uri url = new Uri("http://localhost/api.cgi?id=" + itemId.Value);
+                    string s;
+                    using (HttpClient client = new HttpClient())
+                    {
+                        s = client.GetStringAsync(url).Result;
+                    }
+                    s = Regex.Replace(s, @"^\[", "");
+                    s = Regex.Replace(s, @"]$", "");
+
+                    Regex regex = new Regex(@"[A-Za-z0-9_\-]+");
+                    MatchCollection matches = regex.Matches(s);
+                    if (matches.Count > 0)
+                    {
+                        int i = 0;
+                        foreach (Match match in matches)
+                        {
+                            // match.Value
+                            switch(i++)
+                            {
+                                case 0:
+                                    id.Text = match.Value;
+                                    break;
+                                case 1:
+                                    name.Text = match.Value;
+                                    break;
+                                case 2:
+                                    position.Text = match.Value;
+                                    break;
+                                case 3:
+                                    date.Text = match.Value;
+                                    break;
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Совпадений не найдено");
+                    }
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Совпадений не найдено");
+            }
         }
 
     }

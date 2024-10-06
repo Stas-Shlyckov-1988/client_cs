@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="Exele" Height="450" Width="479" ResizeMode="NoResize">
-	<Grid x:Name="data1" Margin="0,0,170,0">
-        <ListView x:Name="listData1" d:ItemsSource="{d:SampleData ItemCount=5}">
+    <Grid x:Name="data1" Margin="0,0,170,-6">
+        <ListView x:Name="listData1" SelectionChanged="StaffSelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            
         </ListView>
-
+        <TextBox x:Name="id" TextWrapping="Wrap" Width="120" Margin="334,32,-145,365"/>
+        <TextBox x:Name="name" TextWrapping="Wrap" Width="120" Margin="334,103,-145,294"/>
+        <TextBox x:Name="position" TextWrapping="Wrap" Width="120" Margin="334,177,-145,220"/>
+        <TextBox x:Name="date" TextWrapping="Wrap" Width="120" Margin="334,250,-145,147"/>
     </Grid>
 </Window>
