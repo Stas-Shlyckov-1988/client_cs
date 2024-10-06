@@ -41,7 +41,8 @@ namespace WpfApp2
                 string row = "";
                 foreach (Match match in matches)
                 {
-                    if (++i < 4) row += match.Value + " ";
+                    if (++i == 3) continue;
+                    if (i < 4) row += match.Value + " ";
                     else
                     {
                         i = 0;
