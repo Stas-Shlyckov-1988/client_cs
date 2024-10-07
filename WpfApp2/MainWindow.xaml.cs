@@ -121,5 +121,24 @@ namespace WpfApp2
             }
         }
 
+
+        private void OnButtonSave(object sender, RoutedEventArgs e)
+        {
+            if (id.Text == "")
+            {
+                MessageBox.Show("Выберите элемент.");
+                return;
+            }
+            string urlPath = "http://localhost/api.cgi?edit=1&id=" 
+                + id.Text + "&name=" + name.Text + "&position=" + position.Text + "&birthday=" + date.Text;
+            Uri url = new Uri(urlPath);
+            string s;
+            using (HttpClient client = new HttpClient())
+            {
+                s = client.GetStringAsync(url).Result;
+            }
+            MessageBox.Show("Вы сохранили запись.");
+        }
+
     }
 }
