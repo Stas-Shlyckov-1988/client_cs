@@ -137,7 +137,16 @@ namespace WpfApp2
             {
                 s = client.GetStringAsync(url).Result;
             }
-            MessageBox.Show("Вы сохранили запись.");
+            Regex regex = new Regex(@"[A-Za-z0-9_\-]+");
+            MatchCollection matches = regex.Matches(s);
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                   if(match.Value == "1")
+                      MessageBox.Show("Вы сохранили запись.");
+                }
+            }
         }
 
     }
