@@ -34,7 +34,7 @@ namespace WpfApp2
             s = Regex.Replace(s, @"^\[", "");
             s = Regex.Replace(s, @"]$", "");
 
-            Regex regex = new Regex(@"[A-Za-z0-9_\-]+");
+            Regex regex = new Regex(@"[A-Za-zА-Яа-я0-9_\-]+");
             MatchCollection matches = regex.Matches(s);
             if (matches.Count > 0)
             {
@@ -63,7 +63,6 @@ namespace WpfApp2
 
         private void StaffSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //MessageBox.Show("Selected: " + e.AddedItems[0].ToString());
             Regex item = new Regex(@"^\d+");
             MatchCollection itemIds = item.Matches(e.AddedItems[0].ToString());
             if (itemIds.Count > 0)
@@ -80,7 +79,7 @@ namespace WpfApp2
                     s = Regex.Replace(s, @"^\[", "");
                     s = Regex.Replace(s, @"]$", "");
 
-                    Regex regex = new Regex(@"[A-Za-z0-9_\-]+");
+                    Regex regex = new Regex(@"[A-Za-zА-Яа-я0-9_\-]+");
                     MatchCollection matches = regex.Matches(s);
                     if (matches.Count > 0)
                     {
@@ -137,7 +136,7 @@ namespace WpfApp2
             {
                 s = client.GetStringAsync(url).Result;
             }
-            Regex regex = new Regex(@"[A-Za-z0-9_\-]+");
+            Regex regex = new Regex(@"[A-Za-zА-Яа-я0-9_\-]+");
             MatchCollection matches = regex.Matches(s);
             if (matches.Count > 0)
             {
